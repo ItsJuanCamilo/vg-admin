@@ -19,7 +19,7 @@ from kivy.clock import mainthread
 
 # --- CONFIGURATION ---
 # 1. Project ID (Extracted from your uploaded file)
-FIREBASE_PROJECT_ID = vegetable-garden-aa4ef
+FIREBASE_PROJECT_ID = "vegetable-garden-aa4ef"
 
 # 2. YOU MUST PASTE YOUR WEB API KEY HERE
 # Go to Firebase Console - Project Settings - General - Web API Key
@@ -209,3 +209,4 @@ class VGAdminApp(MDApp)
 if __name__ == '__main__'
 
     VGAdminApp().run()
+
