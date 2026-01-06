@@ -23,12 +23,12 @@ FIREBASE_PROJECT_ID = vegetable-garden-aa4ef
 
 # 2. YOU MUST PASTE YOUR WEB API KEY HERE
 # Go to Firebase Console - Project Settings - General - Web API Key
-FIREBASE_API_KEY = PASTE_YOUR_WEB_API_KEY_HERE
+FIREBASE_API_KEY = "AIzaSyDq3Di55wfu_hNAepWC_upptq7lrR9eWaY"
 
 # Firestore REST API URL
-FIRESTORE_URL = fhttpsfirestore.googleapis.comv1projects{FIREBASE_PROJECT_ID}databases(default)documentstransactions
+FIRESTORE_URL = f"https://firestore.googleapis.com/v1/projects/{FIREBASE_PROJECT_ID}/databases/(default)/documents/transactions"
 
-SECRET_KEY = my_super_secret_server_key
+SECRET_KEY = "my_super_secret_server_key"
 
 # --- KIVY DESIGN (KV Language) ---
 KV = '''
@@ -207,4 +207,5 @@ class VGAdminApp(MDApp)
         self.root.ids.gen_btn.disabled = False
 
 if __name__ == '__main__'
+
     VGAdminApp().run()
