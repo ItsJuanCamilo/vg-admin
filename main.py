@@ -104,12 +104,12 @@ Screen
             height 40dp
 '''
 
-class VGAdminApp(MDApp)
-    def build(self)
+class VGAdminApp(MDApp):
+    def build(self):
         self.theme_cls.primary_palette = Green
         return Builder.load_string(KV)
 
-    def start_generation_process(self)
+    def start_generation_process(self):
         Starts the process in a background thread to keep UI responsive.
         name = self.root.ids.name_field.text.strip()
         amount = self.root.ids.amount_field.text.strip()
@@ -117,7 +117,7 @@ class VGAdminApp(MDApp)
         mode = self.root.ids.mode_field.text.strip()
         manual_ref = self.root.ids.ref_field.text.strip()
         
-        if not name or not amount
+        if not name or not amount:
             self.root.ids.status_label.text = Error Name and Amount required!
             return
 
@@ -129,7 +129,7 @@ class VGAdminApp(MDApp)
         threading.Thread(target=self.generate_qr_background, 
                          args=(name, amount, purpose, mode, manual_ref)).start()
 
-    def generate_qr_background(self, name, amount, purpose, mode, manual_ref)
+    def generate_qr_background(self, name, amount, purpose, mode, manual_ref):
         receiver = Admin Mobile
         final_ref = manual_ref.upper() if manual_ref else CASH- + str(random.randint(1000, 9999))
         now = datetime.datetime.now()
@@ -166,7 +166,7 @@ class VGAdminApp(MDApp)
             # Perform the request
             response = requests.patch(doc_url, json=firestore_data)
             
-            if response.status_code != 200
+            if response.status_code != 200:
                 # If it fails, show the error code
                 error_msg = fAPI Error {response.status_code}
                 try
@@ -195,18 +195,19 @@ class VGAdminApp(MDApp)
             self.update_ui_error(fConnection Error {str(e)})
 
     @mainthread
-    def update_ui_success(self, filename, code)
+    def update_ui_success(self, filename, code):
         self.root.ids.qr_image.source = filename
         self.root.ids.qr_image.reload()
         self.root.ids.status_label.text = fSuccess! Code {code}
         self.root.ids.gen_btn.disabled = False
 
     @mainthread
-    def update_ui_error(self, message)
+    def update_ui_error(self, message):
         self.root.ids.status_label.text = message
         self.root.ids.gen_btn.disabled = False
 
-if __name__ == '__main__'
+if __name__ == '__main__':
 
     VGAdminApp().run()
+
 
